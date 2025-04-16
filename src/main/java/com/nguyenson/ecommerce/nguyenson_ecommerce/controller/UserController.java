@@ -1,5 +1,7 @@
-package com.nguyenson.ecommerce.nguyenson_ecommerce;
+package com.nguyenson.ecommerce.nguyenson_ecommerce.controller;
 
+import com.nguyenson.ecommerce.nguyenson_ecommerce.model.User;
+import com.nguyenson.ecommerce.nguyenson_ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

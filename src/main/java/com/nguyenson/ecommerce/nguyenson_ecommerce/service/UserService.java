@@ -1,7 +1,8 @@
-package com.nguyenson.ecommerce.nguyenson_ecommerce;
+package com.nguyenson.ecommerce.nguyenson_ecommerce.service;
 
+import com.nguyenson.ecommerce.nguyenson_ecommerce.model.User;
+import com.nguyenson.ecommerce.nguyenson_ecommerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

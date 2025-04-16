@@ -1,5 +1,6 @@
-package com.nguyenson.ecommerce.nguyenson_ecommerce;
+package com.nguyenson.ecommerce.nguyenson_ecommerce.repository;
 
+import com.nguyenson.ecommerce.nguyenson_ecommerce.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
