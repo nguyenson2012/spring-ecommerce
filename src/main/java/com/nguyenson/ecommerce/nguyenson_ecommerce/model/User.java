@@ -84,4 +84,12 @@ public class User {
     public void setRole(UserRole role) {
         this.role = role;
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
