@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,11 +17,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
+@Entity(name = "orders")
 @Data
 @NoArgsConstructor
-public class CartItem {
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,12 +32,13 @@ public class CartItem {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    private BigDecimal totalAmount;
 
-    private Integer quantity;
-    private BigDecimal price;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status = OrderStatus.PENDING;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> items = new ArrayList<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -55,28 +62,28 @@ public class CartItem {
         this.user = user;
     }
 
-    public Product getProduct() {
-        return product;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public OrderStatus getStatus() {
+        return status;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public List<OrderItem> getItems() {
+        return items;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
     }
 
     public LocalDateTime getCreatedAt() {

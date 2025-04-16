@@ -2,29 +2,32 @@ package com.nguyenson.ecommerce.nguyenson_ecommerce.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
-@Data
 @NoArgsConstructor
-public class CartItem {
+@AllArgsConstructor
+@Data
+public class OrderItem {
+    public OrderItem(Long id, Product product, Integer quantity, BigDecimal price, Order order) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.order = order;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
@@ -33,11 +36,9 @@ public class CartItem {
     private Integer quantity;
     private BigDecimal price;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
     public Long getId() {
         return id;
@@ -45,14 +46,6 @@ public class CartItem {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Product getProduct() {
@@ -79,19 +72,11 @@ public class CartItem {
         this.price = price;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
