@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class OrderItem {
     public OrderItem(Long id, Product product, Integer quantity, BigDecimal price, Order order) {
